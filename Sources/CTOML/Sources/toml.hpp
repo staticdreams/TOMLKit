@@ -8680,7 +8680,7 @@ TOML_IMPL_NAMESPACE_START
 			case 0x05: return c == U'\u1680' || c == U'\u180E';
 			case 0x07:
 				return (U'\u2000' <= c && c <= U'\u200B') || (U'\u205F' <= c && c <= U'\u2060') || c == U'\u202F';
-			default: TOML_UNREACHABLE;
+			default: return false; // Echolot fork: was TOML_UNREACHABLE, reached by U+00A1…U+0499 and others
 		}
 
 		TOML_UNREACHABLE;
@@ -8803,7 +8803,7 @@ TOML_IMPL_NAMESPACE_START
 			case 0x03: return c <= U'\uD7FF';
 			case 0x04:
 				return (U'\uF900' <= c && c <= U'\uFDCF') || (U'\uFDF0' <= c && c <= U'\uFFFD') || U'\U00010000' <= c;
-			default: TOML_UNREACHABLE;
+			default: return false; // Echolot fork: was TOML_UNREACHABLE, reached by U+00A1…U+0499 and others
 		}
 
 		TOML_UNREACHABLE;
